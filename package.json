@@ -1,0 +1,19 @@
+{
+  "name": "google-address-autocomplete",
+  "version": "1.0.0",
+  "description": "This is a package that gives an input address autocomplete by using Google's lookup.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "./node_modules/rollup/bin/rollup --config rollup.config.js",
+    "start": "./node_modules/rollup/bin/rollup --config rollup.config.js --watch"
+  },
+  "author": "deric.cain@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1"
+  }
+}
