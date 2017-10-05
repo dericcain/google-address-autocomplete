@@ -1,0 +1,15 @@
+{
+    "extends": ["airbnb-base", "prettier"],
+    "rules": {
+        "no-plusplus": "off",
+        "strict": "off"
+    },
+    "globals": {
+        "document": true,
+        "google": true,
+        "navigator": true
+    },
+    "plugins": [
+        "prettier"
+    ]
+}

@@ -27,7 +27,7 @@ Once you have it installed, you can then use it in your JS files like so:
 
   <!-- This is the one external dependency that is needed in order to make this package work -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places"></script>
-
+  <script src="js/your-compiled-script-here.js"></script>
 </body>
 </html>
 ```
@@ -55,7 +55,7 @@ new AddressAutocomplete('#my-input-id-or-class-name', results => {
 ```
 
 ## Contributing
-This is something that I hacked at really quickly and can be made better. Please, if you would like to contribute, do not hesitate. I am very open to making this a better package.
+See [the contributing guide](CONTRIBUTING.ms)
 
 ## Issues
 If you find an issue, submit it and let's fix it!

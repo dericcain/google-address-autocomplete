@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <label for="address">Enter the first address here</label>
+  <input type="text" id="address" name="address" />
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad7mJughbvRaW3qDl9mbhBnGSVEDQT_4&libraries=places"></script>
+  
+  <script src="CONTRIB_ONLY.js"></script>
+  <script>
+    new AddressAutocomplete('#address', function (result) {
+      console.log(result);
+    });
+  </script>
+</body>
+</html>

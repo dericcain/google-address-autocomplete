@@ -1,9 +1,12 @@
+var AddressAutocomplete = (function () {
+'use strict';
+
 /**
  * @export
  * @class AddressAutocomplete
  * @author Deric Cain <deric.cain@gmail.com>
  */
-export default class AddressAutocomplete {
+class AddressAutocomplete {
   /**
    * Creates an instance of AddressAutocomplete.
    * @param {string} element - This should be in the form of either '.address' or '#address'
@@ -18,7 +21,7 @@ export default class AddressAutocomplete {
     // If we do not find the element, then we need to throw an error
     if (!this.element) {
       throw new Error(
-        "The element you specified is not a valid element. You should attach an input using a class '.some-class' or an ID '#some-id'."
+        `The element you specified is not a valid element. You should attach an input using a class '.some-class' or an ID '#some-id'.`
       );
     }
 
@@ -32,7 +35,7 @@ export default class AddressAutocomplete {
 
   /**
    * This takes care of make everything happen
-   *
+   * 
    * @memberof AddressAutocomplete
    */
   handle() {
@@ -45,7 +48,7 @@ export default class AddressAutocomplete {
 
   /**
    * This method takes care of getting the autocomplete up and running
-   *
+   * 
    * @memberof AddressAutocomplete
    */
   initializeAutocomplete() {
@@ -57,7 +60,7 @@ export default class AddressAutocomplete {
 
   /**
    * Here, we are taking care of getting the address from the results.
-   *
+   * 
    * @memberof AddressAutocomplete
    */
   extractAddress() {
@@ -118,12 +121,12 @@ export default class AddressAutocomplete {
     });
 
     // This is where we check for the callback and then call it, passing our resutls
-    this.callback(result);
+    this.callback && this.callback(result);
   }
 
   /**
    * This will help us narrow down the results of the autocomplete to a user's location
-   *
+   * 
    * @memberof AddressAutocomplete
    */
   getUsersLocation() {
@@ -143,3 +146,7 @@ export default class AddressAutocomplete {
     }
   }
 }
+
+return AddressAutocomplete;
+
+}());
