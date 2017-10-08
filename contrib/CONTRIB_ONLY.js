@@ -21,7 +21,7 @@ class AddressAutocomplete {
     // If we do not find the element, then we need to throw an error
     if (!this.element) {
       throw new Error(
-        `The element you specified is not a valid element. You should attach an input using a class '.some-class' or an ID '#some-id'.`
+        "The element you specified is not a valid element. You should attach an input using a class '.some-class' or an ID '#some-id'."
       );
     }
 
@@ -35,20 +35,20 @@ class AddressAutocomplete {
 
   /**
    * This takes care of make everything happen
-   * 
+   *
    * @memberof AddressAutocomplete
    */
   handle() {
     // When the document is ready, we need to fire everything off.
-    document.onreadystatechange = () => {
+    document.addEventListener('readystatechange', () => {
       this.initializeAutocomplete();
       this.element.addEventListener('focus', this.getUsersLocation);
-    };
+    });
   }
 
   /**
    * This method takes care of getting the autocomplete up and running
-   * 
+   *
    * @memberof AddressAutocomplete
    */
   initializeAutocomplete() {
@@ -60,7 +60,7 @@ class AddressAutocomplete {
 
   /**
    * Here, we are taking care of getting the address from the results.
-   * 
+   *
    * @memberof AddressAutocomplete
    */
   extractAddress() {
@@ -121,12 +121,12 @@ class AddressAutocomplete {
     });
 
     // This is where we check for the callback and then call it, passing our resutls
-    this.callback && this.callback(result);
+    this.callback(result);
   }
 
   /**
    * This will help us narrow down the results of the autocomplete to a user's location
-   * 
+   *
    * @memberof AddressAutocomplete
    */
   getUsersLocation() {

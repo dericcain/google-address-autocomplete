@@ -37,10 +37,10 @@ export default class AddressAutocomplete {
    */
   handle() {
     // When the document is ready, we need to fire everything off.
-    document.onreadystatechange = () => {
+    document.addEventListener('readystatechange', () => {
       this.initializeAutocomplete();
       this.element.addEventListener('focus', this.getUsersLocation);
-    };
+    });
   }
 
   /**
