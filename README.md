@@ -55,7 +55,7 @@ new AddressAutocomplete('#my-input-id-or-class-name', results => {
 ```
 
 ## Contributing
-See [the contributing guide](./CONTRIBUTING.ms)
+See [the contributing guide](./CONTRIBUTING.md)
 
 ## Issues
 If you find an issue, submit it and let's fix it!
