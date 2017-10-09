@@ -1,7 +1,11 @@
 {
   "name": "google-address-autocomplete",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This is a package that gives an input address autocomplete by using Google's lookup.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dericcain/google-address-autocomplete.git"
+  },
   "keywords": [
     "autocomplete",
     "address",
@@ -21,6 +25,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-prettier": "^2.3.1",
     "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
     "prettier": "^1.7.4",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
