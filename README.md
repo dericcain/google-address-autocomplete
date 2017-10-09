@@ -1,36 +1,21 @@
 # Google Address Autocomplete
 > A library that attaches Google address autocomplete to a text input.
 
+![screenshot](screenshot.gif)
+
 ## Dependencies
 - [Google Places Library](https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places)
+
 ## Installation
 ```bash
 npm install google-address-autocomplete
 ```
 
 ## Usage
-Once you have it installed, you can then use it in your JS files like so:
+There are a couple of ways that you can use the library and both are explained below:
 
-```HTML
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <label for="my-input-id-or-class-name">Enter the first address here</label>
-  <!-- Here we are giving our input and ID so we can tell autocomplete where to work -->
-  <input type="text" id="my-input-id-or-class-name" name="my-input-id-or-class-name" />
-
-  <!-- This is the one external dependency that is needed in order to make this package work -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places"></script>
-  <script src="js/your-compiled-script-here.js"></script>
-</body>
-</html>
-```
+#### 1. As a JS module
+You can import the libarary using the `import` keyword. You will need to make sure that you are using something like Weback to transpile your code, because at this time, browsers do not support import modules.
 
 ```JavaScript
 import AddressAutocomplete from 'google-address-autocomplete';
@@ -52,6 +37,66 @@ new AddressAutocomplete('#my-input-id-or-class-name', results => {
     zipCode: "35226",
   };
 });
+```
+And include your final bundle in your HTML like this.
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <label for="my-input-id-or-class-name">Enter the first address here</label>
+  <!-- Here we are giving our input and ID so we can tell autocomplete where to work -->
+  <input type="text" id="my-input-id-or-class-name" name="my-input-id-or-class-name" />
+
+  <!-- This is the one external dependency that is needed in order to make this package work -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places"></script>
+  <script src="js/your-compiled-script-here.js"></script>
+</body>
+</html>
+```
+
+#### 2. Include the compiled script in your HTML
+If you are not using something like Webpack to bundle your assets and you just want to use the library on the page, you can use this process.
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <label for="my-input-id-or-class-name">Enter the first address here</label>
+  <!-- Here we are giving our input and ID so we can tell autocomplete where to work -->
+  <input type="text" id="my-input-id-or-class-name" name="my-input-id-or-class-name" />
+
+  <!-- This is the one external dependency that is needed in order to make this package work -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places"></script>
+  <!-- 
+    You can either point to the node_modules folder or you can copy the file from the node_modules 
+    and place it in your public directory and use it there. Here, we are pointing to the
+    node_modules folder.
+  -->
+  <script src="../node_modules/google-address-autocomplete/dist/google-address-autocomplete.min.js"></script>
+  <script>
+    
+    // Now you can use the library as you normally would
+    new AddressAutocomplete('#address1', function (result) {
+      console.log(result);
+    });
+
+    new AddressAutocomplete('#address2', function (result) {
+      console.log(result);
+    });
+  </script>
+</body>
+</html>
 ```
 
 ## Contributing

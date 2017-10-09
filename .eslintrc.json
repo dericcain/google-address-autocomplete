@@ -2,7 +2,8 @@
     "extends": ["airbnb-base", "prettier"],
     "rules": {
         "no-plusplus": "off",
-        "strict": "off"
+        "strict": "off",
+        "import/no-extraneous-dependencies": "off"
     },
     "globals": {
         "document": true,
