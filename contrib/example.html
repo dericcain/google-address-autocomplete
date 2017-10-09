@@ -8,13 +8,21 @@
 </head>
 <body>
   <label for="address">Enter the first address here</label>
-  <input type="text" id="address" name="address" />
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad7mJughbvRaW3qDl9mbhBnGSVEDQT_4&libraries=places"></script>
+  <br>
+  <input type="text" style="width:280px" id="address1" name="address1" />
+  <br>
+  <label for="address">Enter the second address here</label>
+  <br>
+  <input type="text" style="width:280px" id="address2" name="address2" />
   
-  <script src="CONTRIB_ONLY.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad7mJughbvRaW3qDl9mbhBnGSVEDQT_4&libraries=places"></script>
+  <script src="../dist/google-address-autocomplete.min.js"></script>
   <script>
-    new AddressAutocomplete('#address', function (result) {
+    new AddressAutocomplete('#address1', function (result) {
+      console.log(result);
+    });
+
+    new AddressAutocomplete('#address2', function (result) {
       console.log(result);
     });
   </script>
