@@ -98,7 +98,12 @@ If you are not using something like Webpack to bundle your assets and you just w
 </body>
 </html>
 ```
-
+> **NOTE:** You can use it for multiple fields on a page like so:
+```JavaScript
+new AddressAutocomplete('.shipping-address', result => console.log(result));
+new AddressAutocomplete('.billing-address', result => console.log(result));
+```
+Just bind it to all of the form elements that need autocomplete.
 ## Contributing
 See [the contributing guide](./CONTRIBUTING.md)
 
