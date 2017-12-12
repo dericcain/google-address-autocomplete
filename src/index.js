@@ -75,8 +75,7 @@ export default class AddressAutocomplete {
       formatted_address,
     } = this.autocomplete.getPlace();
     const {
-      geometry,
-      formatted_geometry,
+      geometry
     } = this.autocomplete.getPlace();
     const addressObject = {
       streetNumber: '',
