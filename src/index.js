@@ -70,13 +70,17 @@ export default class AddressAutocomplete {
       postal_code: 'short_name',
     };
 
+    const resultRaw = this.autocomplete.getPlace();
     const {
       address_components,
       formatted_address,
-    } = this.autocomplete.getPlace();
-    const {
-      geometry
-    } = this.autocomplete.getPlace();
+      geometry: {
+        location: {
+          lat,
+          lng
+        }
+      }
+    } = resultRaw;
     const addressObject = {
       streetNumber: '',
       streetName: '',
@@ -88,7 +92,6 @@ export default class AddressAutocomplete {
         latitude: geometry.location.lat,
         longitude: geometry.location.lng,
     };
-    const rawObject = this.autocomplete.getPlace();
 
     // Need to loop over the results and create a friendly object
     for (let i = 0; i < address_components.length; i++) {
@@ -121,14 +124,14 @@ export default class AddressAutocomplete {
       }
     }
 
+    const geoFormatted = Object.assign({}, geoObject);
     const resultFormatted = Object.assign({}, addressObject, {
       formattedAddress: formatted_address,
+      formattedGeometry: geoFormatted
     });
-    const geoFormatted = Object.assign({}, geoObject);
-    const rawResult = Object.assign({}, rawObject);
 
     // This is where we check for the callback and then call it, passing our resutls
-    this.callback(resultFormatted, geoFormatted, rawResult);
+    this.callback(resultFormatted, resultRaw);
   }
 
   /**
