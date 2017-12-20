@@ -88,10 +88,7 @@ export default class AddressAutocomplete {
       stateAbbr: '',
       zipCode: '',
     };
-    const geoObject = {
-        latitude: geometry.location.lat,
-        longitude: geometry.location.lng,
-    };
+    const geoObject = resultRaw.geomatry.location;
 
     // Need to loop over the results and create a friendly object
     for (let i = 0; i < address_components.length; i++) {
@@ -124,10 +121,9 @@ export default class AddressAutocomplete {
       }
     }
 
-    const geoFormatted = Object.assign({}, geoObject);
     const resultFormatted = Object.assign({}, addressObject, {
       formattedAddress: formatted_address,
-      formattedGeometry: geoFormatted
+      formattedGeometry: geoObject
     });
 
     // This is where we check for the callback and then call it, passing our resutls
