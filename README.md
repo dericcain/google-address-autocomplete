@@ -35,9 +35,23 @@ new AddressAutocomplete('#my-input-id-or-class-name', results => {
     streetName: "Shades Crest Road",
     streetNumber: "123",
     zipCode: "35226",
+    coordinates: {
+      lat: -123.45678
+      lng: 98.76543
+    }
   };
 });
 ```
+
+> **NOTE:** There is an optional second parameter that will dump out the raw response from Google. So, it
+> look like this:
+```JavaScript
+new AddressAutocomplete('#my-input-id-or-class-name', results, rawResults);
+```
+You can use a callback for both of them to get the results of each.
+
+*Big thanks to [@Braunson](https://github.com/Braunson) for his help with this!*
+
 And include your final bundle in your HTML like this.
 ```HTML
 <!DOCTYPE html>
@@ -109,3 +123,6 @@ See [the contributing guide](./CONTRIBUTING.md)
 
 ## Issues
 If you find an issue, submit it and let's fix it!
+
+# Contributors
+[Check out these awesome people!](https://github.com/dericcain/google-address-autocomplete/graphs/contributors)
