@@ -2,6 +2,7 @@
  * @export
  * @class AddressAutocomplete
  * @author Deric Cain <deric.cain@gmail.com>
+ * @contributor Braunson Yager <braunson@gmail.com>
  */
 export default class AddressAutocomplete {
   /**
@@ -87,8 +88,8 @@ export default class AddressAutocomplete {
       cityName: '',
       stateAbbr: '',
       zipCode: '',
+      coordinates: { lat: lat(), lng: lng() },
     };
-    const geoObject = resultRaw.geomatry.location;
 
     // Need to loop over the results and create a friendly object
     for (let i = 0; i < address_components.length; i++) {
@@ -122,8 +123,7 @@ export default class AddressAutocomplete {
     }
 
     const resultFormatted = Object.assign({}, addressObject, {
-      formattedAddress: formatted_address,
-      formattedGeometry: geoObject
+      formattedAddress: formatted_address
     });
 
     // This is where we check for the callback and then call it, passing our resutls
