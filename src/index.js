@@ -2,6 +2,7 @@
  * @export
  * @class AddressAutocomplete
  * @author Deric Cain <deric.cain@gmail.com>
+ * @contributor Braunson Yager <braunson@gmail.com>
  */
 export default class AddressAutocomplete {
   /**
@@ -70,16 +71,24 @@ export default class AddressAutocomplete {
       postal_code: 'short_name',
     };
 
+    const resultRaw = this.autocomplete.getPlace();
     const {
       address_components,
       formatted_address,
-    } = this.autocomplete.getPlace();
+      geometry: {
+        location: {
+          lat,
+          lng
+        }
+      }
+    } = resultRaw;
     const addressObject = {
       streetNumber: '',
       streetName: '',
       cityName: '',
       stateAbbr: '',
       zipCode: '',
+      coordinates: { lat: lat(), lng: lng() },
     };
 
     // Need to loop over the results and create a friendly object
@@ -113,12 +122,12 @@ export default class AddressAutocomplete {
       }
     }
 
-    const result = Object.assign({}, addressObject, {
-      formattedAddress: formatted_address,
+    const resultFormatted = Object.assign({}, addressObject, {
+      formattedAddress: formatted_address
     });
 
     // This is where we check for the callback and then call it, passing our resutls
-    this.callback(result);
+    this.callback(resultFormatted, resultRaw);
   }
 
   /**

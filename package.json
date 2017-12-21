@@ -27,9 +27,9 @@
     "rollup-plugin-uglify": "^2.0.1"
   },
   "scripts": {
-    "build": "./node_modules/rollup/bin/rollup --config rollup.config.js",
-    "start": "./node_modules/rollup/bin/rollup --config rollup.config.js --watch",
-    "start:contrib": "./node_modules/rollup/bin/rollup --config contrib/rollup.config.js --watch",
+    "build": "rollup --config rollup.config.js",
+    "start": "rollup --config rollup.config.js --watch",
+    "start:contrib": "rollup --config contrib/rollup.config.js --watch",
     "test": "eslint ./src",
     "lint": "npm test",
     "lint:fix": "eslint --fix ./src",

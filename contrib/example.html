@@ -14,16 +14,18 @@
   <label for="address">Enter the second address here</label>
   <br>
   <input type="text" style="width:280px" id="address2" name="address2" />
-  
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad7mJughbvRaW3qDl9mbhBnGSVEDQT_4&libraries=places"></script>
   <script src="../dist/google-address-autocomplete.min.js"></script>
   <script>
-    new AddressAutocomplete('#address1', function (result) {
+    new AddressAutocomplete('#address1', function (result, rawResponse) {
       console.log(result);
+      console.log(rawResponse);
     });
 
-    new AddressAutocomplete('#address2', function (result) {
+    new AddressAutocomplete('#address2', function (result, rawResponse) {
       console.log(result);
+      console.log(rawResponse);
     });
   </script>
 </body>
