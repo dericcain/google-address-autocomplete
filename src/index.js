@@ -3,16 +3,18 @@
  * @class AddressAutocomplete
  * @author Deric Cain <deric.cain@gmail.com>
  * @contributor Braunson Yager <braunson@gmail.com>
+ * @contributor Jonathan Sardo <sardoj@gmail.com>
  */
 export default class AddressAutocomplete {
   /**
    * Creates an instance of AddressAutocomplete.
    * @param {string} element - This should be in the form of either '.address' or '#address'
+   * @param {object} options - This object contains options to add to the API call
    * @param {function} callback - This callback will have the result passed as the first param
    * @throws Error - If we don't have a valid element
    * @memberof AddressAutocomplete
    */
-  constructor(element, callback) {
+  constructor(element, options, callback) {
     // Can take element as '.class-name' or '#id-name'
     this.element = document.querySelector(element);
 
@@ -21,6 +23,12 @@ export default class AddressAutocomplete {
       throw new Error(
         "The element you specified is not a valid element. You should attach an input using a class '.some-class' or an ID '#some-id'."
       );
+    }
+
+    if (options) {
+      this.options = options;
+    } else {
+      this.options = {};
     }
 
     this.callback = callback;
@@ -45,14 +53,17 @@ export default class AddressAutocomplete {
   }
 
   /**
-   * This method takes care of getting the autocomplete up and running
+   * This method takes care of getting the autocomplete up and running with custom options
    *
    * @memberof AddressAutocomplete
    */
   initializeAutocomplete() {
-    this.autocomplete = new google.maps.places.Autocomplete(this.element, {
+    const defaultOptions = {
       types: ['geocode'],
-    });
+    }
+    const options = Object.assign(this.options, defaultOptions);
+
+    this.autocomplete = new google.maps.places.Autocomplete(this.element, options);
     this.autocomplete.addListener('place_changed', this.extractAddress);
   }
 

@@ -11,6 +11,9 @@
   ],
   "main": "dist/index.js",
   "author": "deric.cain@gmail.com",
+  "contributors": [
+    "Jonathan SARDO <sardoj@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
