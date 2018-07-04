@@ -9,12 +9,12 @@ export default class AddressAutocomplete {
   /**
    * Creates an instance of AddressAutocomplete.
    * @param {string} element - This should be in the form of either '.address' or '#address'
-   * @param {object} options - This object contains options to add to the API call
-   * @param {function} callback - This callback will have the result passed as the first param
+   * @param {object|function} optionsOrCallback - This object contains options to add to the API call or a callback
+   * @param {function|null} callback - This callback will have the result passed as the first param
    * @throws Error - If we don't have a valid element
    * @memberof AddressAutocomplete
    */
-  constructor(element, options, callback) {
+  constructor(element, optionsOrCallback, callback=null) {
     // Can take element as '.class-name' or '#id-name'
     this.element = document.querySelector(element);
 
@@ -25,13 +25,28 @@ export default class AddressAutocomplete {
       );
     }
 
-    if (options) {
-      this.options = options;
-    } else {
-      this.options = {};
+    // Default options
+    const defaultOptions = {
+      types: ['geocode'],
     }
+console.log(typeof optionsOrCallback);
+    if (typeof optionsOrCallback === "function") { // Compatible with previous versions
+      // Second parameter is a callback function
+      this.callback = optionsOrCallback;
 
-    this.callback = callback;
+      // There is not extra options
+      this.options = defaultOptions;
+
+    } else if (typeof optionsOrCallback === "object" && typeof callback === "function") {
+      // Second parameter is an options list
+      this.options = Object.assign(optionsOrCallback, defaultOptions);
+
+      // Third parameter is a callback function
+      this.callback = callback;
+
+    } else {
+      throw new DOMException('To be able to use extra options, the type of the second parameter must be "object" and the type of the third parameter must be "function".')
+    }
 
     // We are binding the context of 'this' to this class instance
     this.extractAddress = this.extractAddress.bind(this);
@@ -58,12 +73,7 @@ export default class AddressAutocomplete {
    * @memberof AddressAutocomplete
    */
   initializeAutocomplete() {
-    const defaultOptions = {
-      types: ['geocode'],
-    }
-    const options = Object.assign(this.options, defaultOptions);
-
-    this.autocomplete = new google.maps.places.Autocomplete(this.element, options);
+    this.autocomplete = new google.maps.places.Autocomplete(this.element, this.options);
     this.autocomplete.addListener('place_changed', this.extractAddress);
   }
 

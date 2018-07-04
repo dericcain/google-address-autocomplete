@@ -21,7 +21,7 @@ You can import the library using the `import` keyword. You will need to make sur
 import AddressAutocomplete from 'google-address-autocomplete';
 
 // Use a callback here to get the results
-new AddressAutocomplete('#my-input-id-or-class-name', null, results => {
+new AddressAutocomplete('#my-input-id-or-class-name', (results) => {
   const addressObject = results;
 
   // This is what the results object looks like
@@ -43,22 +43,21 @@ new AddressAutocomplete('#my-input-id-or-class-name', null, results => {
 });
 ```
 
-> **NOTE:** There is an optional second parameter for adding custom options to the API call. So, it
+> **NOTE:** There is an optional parameter for adding custom options to the API call. So, it
 > look like this:
 ```JavaScript
 const options = {
   componentRestrictions: {country: "us"}
 }
-new AddressAutocomplete('#my-input-id-or-class-name', options, results);
+new AddressAutocomplete('#my-input-id-or-class-name', options, results => {...});
 ```
 You can use custom options for example, to restrict the search to a specific area (country, region, city, etc.).
-If you don't want to add options, set `{}` or `null`.
 
 
-> **NOTE:** There is an optional third parameter that will dump out the raw response from Google. So, it
-> look like this:
+> **NOTE:** There is an optional second parameter in the callback function, that will dump out the raw response from Google.
+> So, it look like this:
 ```JavaScript
-new AddressAutocomplete('#my-input-id-or-class-name', null, results, rawResults);
+new AddressAutocomplete('#my-input-id-or-class-name', (results, rawResults) => {...});
 ```
 You can use a callback for both of them to get the results of each.
 
@@ -113,11 +112,11 @@ If you are not using something like Webpack to bundle your assets and you just w
   <script>
 
     // Now you can use the library as you normally would
-    new AddressAutocomplete('#address1', {}, function (result) {
+    new AddressAutocomplete('#address1', function (result) {
       console.log(result);
     });
 
-    new AddressAutocomplete('#address2', {}, function (result) {
+    new AddressAutocomplete('#address2', function (result) {
       console.log(result);
     });
   </script>
