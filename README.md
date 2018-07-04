@@ -15,13 +15,13 @@ npm install google-address-autocomplete
 There are a couple of ways that you can use the library and both are explained below:
 
 #### 1. As a JS module
-You can import the libarary using the `import` keyword. You will need to make sure that you are using something like Weback to transpile your code, because at this time, browsers do not support import modules.
+You can import the library using the `import` keyword. You will need to make sure that you are using something like Weback to transpile your code, because at this time, browsers do not support import modules.
 
 ```JavaScript
 import AddressAutocomplete from 'google-address-autocomplete';
 
 // Use a callback here to get the results
-new AddressAutocomplete('#my-input-id-or-class-name', results => {
+new AddressAutocomplete('#my-input-id-or-class-name', (results) => {
   const addressObject = results;
 
   // This is what the results object looks like
@@ -43,10 +43,21 @@ new AddressAutocomplete('#my-input-id-or-class-name', results => {
 });
 ```
 
-> **NOTE:** There is an optional second parameter that will dump out the raw response from Google. So, it
+> **NOTE:** There is an optional parameter for adding custom options to the API call. So, it
 > look like this:
 ```JavaScript
-new AddressAutocomplete('#my-input-id-or-class-name', results, rawResults);
+const options = {
+  componentRestrictions: {country: "us"}
+}
+new AddressAutocomplete('#my-input-id-or-class-name', options, results => {...});
+```
+You can use custom options for example, to restrict the search to a specific area (country, region, city, etc.).
+
+
+> **NOTE:** There is an optional second parameter in the callback function, that will dump out the raw response from Google.
+> So, it look like this:
+```JavaScript
+new AddressAutocomplete('#my-input-id-or-class-name', (results, rawResults) => {...});
 ```
 You can use a callback for both of them to get the results of each.
 
@@ -92,14 +103,14 @@ If you are not using something like Webpack to bundle your assets and you just w
 
   <!-- This is the one external dependency that is needed in order to make this package work -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_API_KEY_GOES_HERE&libraries=places"></script>
-  <!-- 
-    You can either point to the node_modules folder or you can copy the file from the node_modules 
+  <!--
+    You can either point to the node_modules folder or you can copy the file from the node_modules
     and place it in your public directory and use it there. Here, we are pointing to the
     node_modules folder.
   -->
   <script src="../node_modules/google-address-autocomplete/dist/google-address-autocomplete.min.js"></script>
   <script>
-    
+
     // Now you can use the library as you normally would
     new AddressAutocomplete('#address1', function (result) {
       console.log(result);
