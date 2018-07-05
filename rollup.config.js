@@ -1,4 +1,6 @@
-import moduleConfig from './scripts/module-config';
-import onPageAssetConfig from './scripts/on-page-config';
+import config from './scripts/config';
 
-export default [moduleConfig, onPageAssetConfig];
+const moduleConfig = config();
+const browserConfig = config(false);
+
+export default [moduleConfig, browserConfig];

@@ -48,7 +48,7 @@ new AddressAutocomplete('#my-input-id-or-class-name', (results) => {
 ```JavaScript
 const options = {
   componentRestrictions: {country: "us"}
-}
+};
 new AddressAutocomplete('#my-input-id-or-class-name', options, results => {...});
 ```
 You can use custom options for example, to restrict the search to a specific area (country, region, city, etc.).

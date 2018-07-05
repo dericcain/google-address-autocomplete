@@ -14,7 +14,7 @@ export default class AddressAutocomplete {
    * @throws Error - If we don't have a valid element
    * @memberof AddressAutocomplete
    */
-  constructor(element, optionsOrCallback, callback=null) {
+  constructor(element, optionsOrCallback, callback = null) {
     // Can take element as '.class-name' or '#id-name'
     this.element = document.querySelector(element);
 
@@ -28,24 +28,25 @@ export default class AddressAutocomplete {
     // Default options
     const defaultOptions = {
       types: ['geocode'],
-    }
-console.log(typeof optionsOrCallback);
-    if (typeof optionsOrCallback === "function") { // Compatible with previous versions
+    };
+
+    if (typeof optionsOrCallback === 'function') {
+      // Compatible with previous versions
       // Second parameter is a callback function
       this.callback = optionsOrCallback;
 
       // There is not extra options
       this.options = defaultOptions;
-
-    } else if (typeof optionsOrCallback === "object" && typeof callback === "function") {
+    } else if (typeof optionsOrCallback === 'object') {
       // Second parameter is an options list
-      this.options = Object.assign(optionsOrCallback, defaultOptions);
+      this.options = Object.assign({}, defaultOptions, optionsOrCallback);
 
       // Third parameter is a callback function
       this.callback = callback;
-
     } else {
-      throw new DOMException('To be able to use extra options, the type of the second parameter must be "object" and the type of the third parameter must be "function".')
+      throw new Error(
+        'To be able to use extra options, the type of the second parameter must be "object" and the type of the third parameter must be "function".'
+      );
     }
 
     // We are binding the context of 'this' to this class instance
@@ -73,7 +74,10 @@ console.log(typeof optionsOrCallback);
    * @memberof AddressAutocomplete
    */
   initializeAutocomplete() {
-    this.autocomplete = new google.maps.places.Autocomplete(this.element, this.options);
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.element,
+      this.options
+    );
     this.autocomplete.addListener('place_changed', this.extractAddress);
   }
 
@@ -96,12 +100,7 @@ console.log(typeof optionsOrCallback);
     const {
       address_components,
       formatted_address,
-      geometry: {
-        location: {
-          lat,
-          lng
-        }
-      }
+      geometry: { location: { lat, lng } },
     } = resultRaw;
     const addressObject = {
       streetNumber: '',
@@ -144,7 +143,7 @@ console.log(typeof optionsOrCallback);
     }
 
     const resultFormatted = Object.assign({}, addressObject, {
-      formattedAddress: formatted_address
+      formattedAddress: formatted_address,
     });
 
     // This is where we check for the callback and then call it, passing our resutls
