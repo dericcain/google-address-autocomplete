@@ -94,6 +94,7 @@ export default class AddressAutocomplete {
       administrative_area_level_1: 'short_name',
       country: 'long_name',
       postal_code: 'short_name',
+      postal_town: 'long_name'
     };
 
     const resultRaw = this.autocomplete.getPlace();
@@ -123,6 +124,7 @@ export default class AddressAutocomplete {
             addressObject.streetName = address_components[i].long_name;
             break;
           case 'locality':
+          case 'postal_town':
             addressObject.cityName = address_components[i].long_name;
             break;
           case 'administrative_area_level_1':
