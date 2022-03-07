@@ -157,7 +157,7 @@ export default class AddressAutocomplete {
    */
   getUsersLocation() {
     // Using feature detection to make sure the browser supports geolocation
-    if (navigator.geolocation) {
+    if (!this.options.disableUsersLocation && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const geolocation = {
           lat: position.coords.latitude,
